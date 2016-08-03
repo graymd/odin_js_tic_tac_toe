@@ -1,0 +1,14 @@
+#container{
+  margin: 0 auto;
+  /*border: 1px solid black;*/
+  height: 500px;
+  width: 500px;
+}
+
+.gameboard-square{
+  height: 166px;
+  width: 166px;
+  outline: 1px solid;
+  display: inline-block;
+  float: left;
+}
