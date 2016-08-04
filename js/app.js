@@ -1,6 +1,8 @@
 //cat tie is called if win on the last move.
 //show current user piece
-//create game reset
+//create game reset - done - needs refactor
+//on win or tie last user input not showing on screen
+
 
 $(document).ready(() => {
   $('.gameboard-square').click(function() {
@@ -12,9 +14,9 @@ const gameboard = {
   addUserSelection(boardSquare) {
     $(boardSquare).text(this.currentUserPiece);
     this.updateCurrentGamePositions(boardSquare.attr('id'));
-    this.changeUserPiece();
     this.checkWinner();
     this.checkCatsTie();
+    this.changeUserPiece();
   },
   currentUserPiece: 'X',
   changeUserPiece() {
@@ -83,7 +85,7 @@ const gameboard = {
         directionsToTest[i][1] === directionsToTest[i][2]
       ) {
         alert(`gameOver! ${directionsToTest[i][0]} wins!`)
-        location.reload();
+        this.resetBoard();
       }
     }
   },
@@ -108,19 +110,11 @@ const gameboard = {
     }
     if (emptyStringCount === 0) {
       alert("gameOver!  Cats Tie!")
-      location.reload();
+      this.resetBoard();
     }
+  },
+  resetBoard(){
+    this.currentGamePositions = ['', '', '', '', '', '', '', '', ''];
+    $('.gameboard-square').text("")
   }
-
 };
-
-
-
-// directionsToTest.forEach((directions) => {
-//   console.log(directions);
-//   if (directions[0] !== '') {
-//     directions.every((el) => {
-//       el === directions[0]
-//     });
-//   }
-// });
